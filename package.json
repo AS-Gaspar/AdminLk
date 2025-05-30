@@ -8,7 +8,11 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "build": "npx webpack --config webpack.config.js",
+    "dev": "webpack --config webpack.config.js --watch",
+    "dev:serve": "nodemon --watch dist --exec \"node app.js\"",
+    "dev:tailwind": "npx tailwindcss -i ./src/styles/input.css -o ./public/main.css --watch",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:serve\" \"npm run dev:tailwind\""
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.7",
@@ -25,6 +29,7 @@
     "@babel/preset-env": "^7.27.2",
     "babel-loader": "^10.0.0",
     "concurrently": "^9.1.2",
+    "nodemon": "^3.1.10",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.1"
