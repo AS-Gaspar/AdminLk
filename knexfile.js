@@ -1,9 +1,9 @@
-require("dotenv").config()
+import 'dotenv/config'
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-module.exports = {
+const config = {
   development: {
     client: "pg",
     connection: {
@@ -11,7 +11,7 @@ module.exports = {
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      port: Number(process.env.DB_PORT),
+      port: Number(process.env.DB_PORT) || 5432,
     },
     migrations: {
       directory: "./migrations",
@@ -20,11 +20,13 @@ module.exports = {
   },
 
   staging: {
-    client: "postgresql",
+    client: "pg", 
     connection: {
-      database: "empreiteira_lk",
-      user: "gaspar",
-      password: "0405",
+      host: process.env.STAGING_DB_HOST,
+      user: process.env.STAGING_DB_USER,
+      password: process.env.STAGING_DB_PASSWORD,
+      database: process.env.STAGING_DB_NAME,
+      port: Number(process.env.STAGING_DB_PORT) || 5432,
     },
     pool: {
       min: 2,
@@ -32,15 +34,18 @@ module.exports = {
     },
     migrations: {
       tableName: "knex_migrations",
+      directory: "./migrations",
     },
   },
 
   production: {
-    client: "postgresql",
+    client: "pg", 
     connection: {
-      database: "empreiteira_lk",
-      user: "gaspar",
-      password: "0405",
+      host: process.env.PROD_DB_HOST,
+      user: process.env.PROD_DB_USER,
+      password: process.env.PROD_DB_PASSWORD,
+      database: process.env.PROD_DB_NAME,
+      port: Number(process.env.PROD_DB_PORT) || 5432,
     },
     pool: {
       min: 2,
@@ -48,6 +53,9 @@ module.exports = {
     },
     migrations: {
       tableName: "knex_migrations",
+      directory: "./migrations",
     },
   },
 }
+
+export default config
