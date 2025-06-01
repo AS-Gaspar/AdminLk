@@ -1,5 +1,4 @@
-
-import knexFramework from 'knex'
+import knex from 'knex'
 import knexfileConfig from '../../../knexfile.js' 
 
 const environment = process.env.NODE_ENV || 'development'
@@ -11,7 +10,7 @@ if (!activeConfig) {
   process.exit(1)
 }
 
-const db = knexFramework(activeConfig)
+const db = knex(activeConfig)
 
 db.raw('SELECT 1')
   .then(() => {

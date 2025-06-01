@@ -1,4 +1,4 @@
-import knex from '../database'
+import db from '../database/index.js'
 
 export const alterarObra = async (req, res) => {
     try {
@@ -13,9 +13,9 @@ export const alterarObra = async (req, res) => {
         if (nome_obra !== undefined) atualizarDados.nome_obra = nome_obra
         if (endereco_obra !== undefined) atualizarDados.endereco_obra = endereco_obra
 
-        atualizarDados.updated_at = knex.fn.now()
+        atualizarDados.updated_at = db.fn.now()
 
-        const [obraAtualizada] = await knex('obras') 
+        const [obraAtualizada] = await db('obras') 
             .where('id_obra', idObra)
             .update(atualizarDados)
             .returning(['id_obra', 'nome_obra', 'endereco_obra', 'created_at', 'updated_at'])
@@ -34,7 +34,7 @@ export const alterarObra = async (req, res) => {
 export const deletarObra = async (req, res) => {
     try {
         const { idObra } = req.params
-        const deletada = await knex('obras').where('id_obras', idObra).del()
+        const deletada = await db('obras').where('id_obras', idObra).del()
 
         if (!deletada) {
             return res.status(404).json({ message: 'Obra não encontrada para remoção.' })
@@ -50,7 +50,7 @@ export const deletarObra = async (req, res) => {
 
 export const listarObras = async (req, res) => {
     try {
-        const obras = await knex('obras').select('*').orderBy('nome_obra')
+        const obras = await db('obras').select('*').orderBy('nome_obra')
         return res.json(obras)
     } catch (error) {
         console.error("Erro em listarObras:", error)
@@ -61,7 +61,7 @@ export const listarObras = async (req, res) => {
 export const buscarObraPorId = async (req, res) => {
     try {
         const { idObra } = req.params
-        const obra = await knex('obras').where('id_obra', idObra).first()
+        const obra = await db('obras').where('id_obra', idObra).first()
 
         if (!obra) {
             return res.status(404).json({ message: 'Obra não encontrada.'})
@@ -81,9 +81,11 @@ export const adicionarObra = async (req, res) => {
             return res.status(400).json({ message: 'O nome da obra é obrigatório'})
         }
 
-        const [insertedObra] = await knex('obra').insert({
+        const [insertedObra] = await db('obra').insert({
             nome_obra,
-            endereço_obra: endereço_obra || null
+            endereço_obra: endereço_obra || null,
+            created_at: db.fn.now(),
+            updated_at: db.fn.now()
         }).returning('*')
 
         return res.status(201).json(insertedObra)

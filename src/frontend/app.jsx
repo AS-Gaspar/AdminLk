@@ -1,11 +1,10 @@
 import React from 'react';
-import PaginaPrincipalObras from './pages/PaginaPrincipalObras';
+import Obras from './pages/obras';
 
 function App() {
   return (
     <div>
-      {/* Aqui poderia ter um Navbar/Layout geral */}
-      <PaginaPrincipalObras />
+      <Obras />
     </div>
   );
 }
