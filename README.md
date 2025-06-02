@@ -1,8 +1,8 @@
 # Sistema de controle de estoque para Empreiteira de mão de obra
 
-Empresa: Empreiteira LK
-CEO: Elias Pereira
-Localização: Bombinhas - SC
+- Empresa: Empreiteira LK
+- CEO: Elias Pereira
+- Localização: Bombinhas - SC
 
 ## Objetivo do projeto:
 
