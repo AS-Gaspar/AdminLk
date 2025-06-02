@@ -5,7 +5,7 @@ import {
   getObras,
   createObra,
   updateObra,
-  deleteObra as deleteObraAPI,
+  deleteObra,
 } from "../sevices/obraService.js"
 
 function Obras() {
@@ -17,12 +17,13 @@ function Obras() {
 
   const carregarObras = useCallback(async () => {
     setIsLoading(true)
-    setError('')
+    setError("")
     try {
       const data = await getObras()
       setObras(data || [])
     } catch (err) {
-      const errorMsg = err.response?.data?.message || err.message || 'Erro inexplicável'
+      const errorMsg =
+        err.response?.data?.message || err.message || "Erro inexplicável"
       setError(`Falha ao carregar obras: ${errorMsg}`)
       console.error("Erro ao carregar obras:", err)
     } finally {
@@ -36,7 +37,7 @@ function Obras() {
 
   const handleSaveObra = async (dadosObra) => {
     setIsLoading(true)
-    setError('')
+    setError("")
     try {
       if (obraParaEditar && obraParaEditar.id_obra) {
         await updateObra(obraParaEditar.id_obra, dadosObra)
@@ -47,7 +48,8 @@ function Obras() {
       setIsModalFormAberto(false)
       setObraParaEditar(null)
     } catch (err) {
-      const errorMsg = err.response?.data?.message || err.message || 'Erro inexplicável'
+      const errorMsg =
+        err.response?.data?.message || err.message || "Erro inexplicável"
       setError(`Falha ao carregar obras: ${errorMsg}`)
       console.error("Erro ao carregar obras:", err)
     } finally {
@@ -57,7 +59,7 @@ function Obras() {
 
   const handleEditarObra = (obra) => {
     setObraParaEditar(obra)
-    setError('')
+    setError("")
     setIsModalFormAberto(true)
   }
 
@@ -66,10 +68,9 @@ function Obras() {
       setIsLoading(true)
       setError("")
       try {
-        await deleteObraAPI(idObra)
+        await deleteObra(idObra)
         await carregarObras()
       } catch (err) {
-        
         setError(
           "Falha ao deletar obra: " +
             (err.response?.data?.message || err.message)
@@ -77,19 +78,21 @@ function Obras() {
       } finally {
         setIsLoading(false)
       }
+    } else {
+      console.log("Usuário cancelou exclusão")
     }
   }
 
   const handleAbrirFormNovaObra = () => {
     setObraParaEditar(null)
-    setError('')
+    setError("")
     setIsModalFormAberto(true)
   }
 
   const handleFecharForm = () => {
     setIsModalFormAberto(false)
     setObraParaEditar(null)
-    setError('')
+    setError("")
   }
 
   return (
@@ -107,7 +110,10 @@ function Obras() {
       </div>
 
       {error && (
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-md shadow-sm" role="alert">
+        <div
+          className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-md shadow-sm"
+          role="alert"
+        >
           <p className="font-bold">Erro</p>
           <p>{error}</p>
         </div>

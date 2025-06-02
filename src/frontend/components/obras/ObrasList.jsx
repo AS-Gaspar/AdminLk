@@ -16,7 +16,7 @@ const formatDate = (dateString) => {
   }
 }
 
-function ObrasList({ obras, onEditar, onDeletar, isLoading }) {
+function ObrasList({ obras, onEditar,   onDeletar, isLoading }) {
   if (isLoading && (!obras || obras.length === 0)) {
     return <p className="text-gray-600 py-4 text-center">Carregando obras...</p>;
   }
@@ -71,7 +71,7 @@ function ObrasList({ obras, onEditar, onDeletar, isLoading }) {
                   Editar
                 </button>
                 <button
-                  onClick={() => onDeletar(obra.id_obra)}
+                  onClick={() => onDeletar(obra.id_obra) }
                   className="text-red-600 hover:text-red-900 font-semibold py-1 px-2 rounded hover:bg-red-100"
                   aria-label={`Excluir ${obra.nome_obra}`}
                 >
