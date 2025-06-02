@@ -16,7 +16,7 @@ const formatDate = (dateString) => {
   }
 }
 
-function ObrasList({ obras, onEditar,   onDeletar, isLoading }) {
+function ObrasList({ obras, onEditar, onDeletar, isLoading }) {
   if (isLoading && (!obras || obras.length === 0)) {
     return <p className="text-gray-600 py-4 text-center">Carregando obras...</p>;
   }
