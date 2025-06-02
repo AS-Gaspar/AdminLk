@@ -36,7 +36,7 @@ function ObraForm({ obraInicial, onSave, onCancel, isLoading }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="p-6 rounded-lg shadow-md space-y-6">
       <h2 className="text-xl font-semibold text-gray-700 mb-4">
         {obraInicial ? "Editar Obra" : "Adicionar Nova Obra"}
       </h2>

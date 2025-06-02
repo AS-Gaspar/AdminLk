@@ -69,6 +69,7 @@ function Obras() {
         await deleteObraAPI(idObra)
         await carregarObras()
       } catch (err) {
+        
         setError(
           "Falha ao deletar obra: " +
             (err.response?.data?.message || err.message)
@@ -113,7 +114,7 @@ function Obras() {
       )}
 
       {isModalFormAberto && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-60 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-white bg-opacity-60 p-4">
           <div className="relative w-full max-w-lg mx-auto">
             <ObraForm
               obraInicial={obraParaEditar}

@@ -34,7 +34,7 @@ export const alterarObra = async (req, res) => {
 export const deletarObra = async (req, res) => {
     try {
         const { idObra } = req.params
-        const deletada = await db('obras').where('id_obras', idObra).del()
+        const deletada = await db('obras').where('id_obra', idObra).del()
 
         if (!deletada) {
             return res.status(404).json({ message: 'Obra não encontrada para remoção.' })
@@ -75,15 +75,15 @@ export const buscarObraPorId = async (req, res) => {
 
 export const adicionarObra = async (req, res) => {
     try {
-        const { nome_obra, endereço_obra } = req.body
+        const { nome_obra, endereco_obra } = req.body
 
         if (!nome_obra) {
             return res.status(400).json({ message: 'O nome da obra é obrigatório'})
         }
 
-        const [insertedObra] = await db('obra').insert({
+        const [insertedObra] = await db('obras').insert({
             nome_obra,
-            endereço_obra: endereço_obra || null,
+            endereco_obra: endereco_obra || null,
             created_at: db.fn.now(),
             updated_at: db.fn.now()
         }).returning('*')

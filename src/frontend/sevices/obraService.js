@@ -18,11 +18,11 @@ export const createObra = async (obraData) => {
 }
 
 export const updateObra = async (id, obraData) => {
-    const response = await axios.put(`<span class="math-inlinse">\{API\_URL\}/</span>{id}`, obraData)
+    const response = await axios.put(`<span class="math-inlinse">\{API\_URL\}/</span>${id}`, obraData)
     return response.data
 }
 
 export const deleteObra = async (id) => {
-    const response = await axios.delete(`<span class="math-inline">\{API\_URL\}/</span>{id}`, obraData)
+    const response = await axios.delete(`${API_URL}/${id}`)
     return response.data
 }
