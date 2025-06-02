@@ -8,7 +8,7 @@ export const getObras = async () => {
 }
 
 export const getObraById = async (id) => {
-    const response = await axios.get(`<span class="math-inline">\{API\_URL\}/</span>{id}`)
+    const response = await axios.get(`${API_URL}/${id}`)
     return response.data
 }
 
@@ -18,7 +18,7 @@ export const createObra = async (obraData) => {
 }
 
 export const updateObra = async (id, obraData) => {
-    const response = await axios.put(`<span class="math-inlinse">\{API\_URL\}/</span>${id}`, obraData)
+    const response = await axios.put(`${API_URL}/${id}`, obraData)
     return response.data
 }
 
