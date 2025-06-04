@@ -1,0 +1,10 @@
+em meu computador com wsl + arch, erstá funcionando corretamente. Em meu pc que utiliza Arch linux, este problema ocorre ao tentar alterar obra:
+
+XHRPUT
+http://localhost:3000/api/obras/4
+[HTTP/1.1 500 Internal Server Error 2ms]
+
+Erro ao carregar obras:
+Object { message: "Request failed with status code 500", name: "AxiosError", code: "ERR_BAD_RESPONSE", config: {…}, request: XMLHttpRequest, response: {…}, status: 500, stack: "", … }
+
+erro com Axios 
